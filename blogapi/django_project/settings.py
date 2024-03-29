@@ -37,16 +37,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",  # new
+    "django.contrib.sites",
     # 3rd-party apps
     "rest_framework",
     "corsheaders",
     "rest_framework.authtoken",
-    "allauth",  # new
-    "allauth.account",  # new
-    "allauth.socialaccount",  # new
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "dj_rest_auth",
-    "dj_rest_auth.registration",  # new
+    "dj_rest_auth.registration",
+    "drf_spectacular",  # new
     # Local
     "accounts.apps.AccountsConfig",
     "posts.apps.PostsConfig",
@@ -146,8 +147,9 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",  # new
+        "rest_framework.authentication.TokenAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",  # new
 }
 
 CORS_ORIGIN_WHITELIST = (
@@ -157,11 +159,17 @@ CORS_ORIGIN_WHITELIST = (
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # new
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-SITE_ID = 1  # new
+SITE_ID = 1
 
-# new
 REST_AUTH = {
     "SESSION_LOGIN": False,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Blog API Project",
+    "DESCRIPTION": "A sample blog to learn about DRF",
+    "VERSION": "1.0.0",
+    # OTHER SETTINGS
 }
